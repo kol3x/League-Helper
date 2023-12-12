@@ -1,0 +1,31 @@
+.loading {
+  margin-top: 50px;
+  display: grid;
+  gap: 70px;
+  justify-items: center;
+}
+
+@keyframes flashingLights {
+  0% {
+    transform: scale(0.3);
+    background-color: rgb(237, 78, 249);
+  }
+  75% {
+    transform: scale(0.5);
+    background-color: #242424;
+  }
+  100% {
+    transform: scale(0.3);
+    background-color: white;
+  }
+}
+
+.loadingTile {
+  background-color: rgb(237, 78, 249);
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  animation-name: flashingLights;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+}

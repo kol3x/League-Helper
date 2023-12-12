@@ -1,0 +1,66 @@
+.searchBox {
+  display: grid;
+  padding: 15px;
+  background-color: white;
+  border-radius: 25px;
+  margin: 0px 20%;
+}
+
+.searchBox > form {
+  padding: 15px;
+  justify-self: center;
+  display: flex;
+  flex-direction: row;
+  font-size: 20px;
+  gap: 10px;
+}
+
+.searchBox > form > button {
+  width: 70px;
+  border-width: 3px;
+  border-color: rgb(255, 218, 255);
+
+  background: linear-gradient(
+    270deg,
+    hsl(299, 59%, 74%) 0%,
+    hsl(301deg 45% 76%) 11%,
+    hsl(287, 100%, 95%) 81%
+  );
+  
+}
+
+.searchBox > form > button:hover {
+  background: linear-gradient(
+    270deg,
+    hsl(298, 100%, 94%) 0%,
+    hsl(300, 100%, 96%) 11%,
+    hsl(287, 100%, 95%) 81%
+  );
+}
+
+form > label > input {
+  border: 1px dashed black;
+  padding: 5px;
+  height: 20px;
+  font-size: 20px;
+  font-weight: 100;
+}
+
+form > label > input:hover {
+  border: 1px solid black;
+}
+
+label {
+  display: grid;
+  gap: 10px;
+  text-align: left;
+}
+
+label:last-of-type {
+  display: flex;
+  flex-direction: column;
+}
+
+select {  
+  height: 200%;
+}

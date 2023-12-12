@@ -1,0 +1,17 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.87);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: url("../public/bg2.png"), url("../public/bg.png");
+  background-size: 15%;
+  background-repeat:repeat-y;
+  background-position: left 20px, right 20px;
+  background-color: rgb(230, 196, 255);
+  background-blend-mode:hard-light
+}
