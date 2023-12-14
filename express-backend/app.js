@@ -7,9 +7,7 @@ const cors = require("cors");
 const indexRouter = require("./routes/index");
 const { FRONTENDURL } = require("./config/index");
 
-
 const app = express();
-
 
 const corsOptions = {
   origin: FRONTENDURL,

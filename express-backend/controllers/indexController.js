@@ -1,10 +1,11 @@
 const asyncHandler = require("express-async-handler");
 const { LolApi, Constants, regionToRegionGroup } = require("twisted");
-const { RIOT } = require("../config/index");
+const { RIOT, REDIS_URL } = require("../config/index");
 const { match_history } = require("./helpers");
 const Redis = require("redis");
 
 const redisClient = Redis.createClient({
+  host: REDIS_URL,
   legacyMode: true,
 });
 (async () => {
