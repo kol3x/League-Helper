@@ -5,7 +5,7 @@ const { match_history } = require("./helpers");
 const Redis = require("redis");
 
 const redisClient = Redis.createClient({
-  host: REDIS_URL,
+  url: REDIS_URL,
   legacyMode: true,
 });
 (async () => {

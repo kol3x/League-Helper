@@ -3,14 +3,14 @@ import "./matches.css";
 import SingleMatch from "./singleMatch";
 import Loading from "./Loading";
 
-const SERVERURL = process.env.REACT_APP_SERVERURL;
+const SERVER_URL = process.env.SERVER_URL;
 
 function Matches({ summonerName, setSummonerName, region }) {
   const [matches, setMatches] = useState(undefined);
 
   useEffect(() => {
     setMatches(undefined);
-    const url = `${SERVERURL}${summonerName}/${region}/matches`;
+    const url = `${SERVER_URL}${summonerName}/${region}/matches`;
 
     const fetchData = async () => {
       const response = await fetch(url);

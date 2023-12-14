@@ -5,12 +5,13 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const cors = require("cors");
 const indexRouter = require("./routes/index");
-const { FRONTENDURL } = require("./config/index");
+const { FRONTEND_URL } = require("./config/index");
+
 
 const app = express();
 
 const corsOptions = {
-  origin: FRONTENDURL,
+  origin: [FRONTEND_URL],
   credentials: true,
 };
 

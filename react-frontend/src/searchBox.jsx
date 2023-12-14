@@ -26,7 +26,7 @@ function Search({ summonerName, setSummonerName, region, setRegion }) {
           setRegion(e.target.serverSelect.value);
         }}
       >
-        <label for="summonerNameInput">
+        <label htmlFor="summonerNameInput">
           Summoner name:
           <input
             type="text"
@@ -38,11 +38,11 @@ function Search({ summonerName, setSummonerName, region, setRegion }) {
             }}
           ></input>
         </label>
-        <label for="serverSelect">
+        <label htmlFor="serverSelect">
           Server:
           <select name="serverSelect">
             {regions.map((reg) => (
-              <option value={reg} selected={reg === region}>
+              <option key={reg} value={reg} selected={reg === region}>
                 {reg}
               </option>
             ))}
