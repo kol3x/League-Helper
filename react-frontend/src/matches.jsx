@@ -10,7 +10,7 @@ function Matches({ summonerName, setSummonerName, region }) {
 
   useEffect(() => {
     setMatches(undefined);
-    const url = `${SERVER_URL}${summonerName}/${region}/matches`;
+    const url = `${SERVER_URL}/${summonerName}/${region}/matches`;
 
     const fetchData = async () => {
       const response = await fetch(url);
