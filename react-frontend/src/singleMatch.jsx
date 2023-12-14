@@ -43,7 +43,7 @@ function SingleMatch({ match, setSummonerName }) {
         <h1>{match.info.championName}</h1>
         <img
           className="mainChampPic"
-          src={`http://ddragon.leagueoflegends.com/cdn/13.9.1/img/champion/${match.info.championName}.png`}
+          src={`https://ddragon.leagueoflegends.com/cdn/13.9.1/img/champion/${match.info.championName}.png`}
           alt={match.info.championName}
         ></img>
         <h3 className="mainChampKda">
