@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import "./matches.css";
 import SingleMatch from "./singleMatch";
 import Loading from "./Loading";
+import { SERVERURL } from "../config/index";
 
 function Matches({ summonerName, setSummonerName, region }) {
   const [matches, setMatches] = useState(undefined);
 
   useEffect(() => {
     setMatches(undefined);
-    const url = `http://localhost:5005/users/${summonerName}/${region}/matches`;
+    const url = `${SERVERURL}${summonerName}/${region}/matches`;
 
     const fetchData = async () => {
       const response = await fetch(url);
