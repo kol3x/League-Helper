@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import "./matches.css";
 import SingleMatch from "./singleMatch";
 import Loading from "./Loading";
-const { SERVERURL } = require("../config/index");
+
+const SERVERURL = process.env.REACT_APP_SERVERURL;
 
 function Matches({ summonerName, setSummonerName, region }) {
   const [matches, setMatches] = useState(undefined);
