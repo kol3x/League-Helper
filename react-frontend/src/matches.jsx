@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./matches.css";
 import SingleMatch from "./singleMatch";
 import Loading from "./Loading";
-import { SERVERURL } from "../config/index";
+const { SERVERURL } = require("../config/index");
 
 function Matches({ summonerName, setSummonerName, region }) {
   const [matches, setMatches] = useState(undefined);

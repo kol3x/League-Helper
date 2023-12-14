@@ -3,4 +3,4 @@ dotenv.config();
 
 const { URI, PORT, RIOT, FRONTENDURL } = process.env;
 
-module.exports = { URI, PORT, RIOT, FRONTENDURL};
+module.exports = { URI, PORT, RIOT, FRONTENDURL };
