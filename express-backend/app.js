@@ -3,19 +3,29 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-const cors = require("cors");
+// const cors = require("cors");
 const indexRouter = require("./routes/index");
 const { FRONTEND_URL } = require("./config/index");
 
-
 const app = express();
 
-const corsOptions = {
-  origin: [FRONTEND_URL],
-  credentials: true,
-};
+// const corsOptions = {
+//   origin: [FRONTEND_URL],
+//   credentials: true,
+// };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', FRONTEND_URL);
+  res.header('Access-Control-Allow-Credentials', true);
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
+  next();
+});
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
