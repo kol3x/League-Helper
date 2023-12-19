@@ -26,39 +26,42 @@ const api = new LolApi({
 });
 
 exports.user_matches = asyncHandler(async (req, res, next) => {
-  try {
-    const summonerName = req.params.user;
-    const region = req.params.server;
-    
-    redisClient.get(
-      `:user_${summonerName}:server_${region}`,
-      async (error, data) => {
-        if (error || data == null) {
-          try {
-            const summoner = await api.Summoner.getByName(summonerName, Constants.Regions[region]);
-            const group = Constants.regionToRegionGroup(Constants.Regions[region]);
-            const matchlist = await api.MatchV5.list(
-              summoner.puuid,
-              Constants.RegionGroups[group],
-              { queue: 420 }
-            ).response.slice(0, 10);
-            const dataAPI = JSON.stringify(await match_history(matchlist, summoner.puuid, api));
-            
-            redisClient.setEx(
-              `:user_${summonerName}:server_${region}`,
-              EXPIRATION,
-              dataAPI
-            );
-            res.send(`${dataAPI}`);
-          } catch (apiError) {
-            console.error('Error fetching data from API:', apiError);
-          }
-        } else {
-          return res.json(JSON.parse(data));
+  const summonerName = req.params.user;
+  const region = req.params.server;
+
+  redisClient.get(
+    `:user_${summonerName}:server_${region}`,
+    async (error, data) => {
+      if (error || data == null) {
+        try {
+          const summoner = await api.Summoner.getByName(
+            summonerName,
+            Constants.Regions[region]
+          );
+          const group = Constants.regionToRegionGroup(
+            Constants.Regions[region]
+          );
+          const matchlist = await api.MatchV5.list(
+            summoner.puuid,
+            Constants.RegionGroups[group],
+            { queue: 420 }
+          ).response.slice(0, 10);
+          const dataAPI = JSON.stringify(
+            await match_history(matchlist, summoner.puuid, api)
+          );
+
+          redisClient.setEx(
+            `:user_${summonerName}:server_${region}`,
+            EXPIRATION,
+            dataAPI
+          );
+          res.send(`${dataAPI}`);
+        } catch (apiError) {
+          console.error("Error fetching data from API:", apiError);
         }
+      } else {
+        return res.json(JSON.parse(data));
       }
-    );
-  } catch (error) {
-    res.status(500).send('Internal Server Error');
-  }
+    }
+  );
 });
