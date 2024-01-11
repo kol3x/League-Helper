@@ -41,7 +41,7 @@ h3 {
   flex-direction: column;
   align-self: start;
   justify-self: end;
-  background: linear-gradient(0deg, hsl(0deg 0% 100%) 0%, hsl(300deg 100% 100%) 25%, hsl(300deg 100% 100%) 50%, hsl(135deg 100% 96%) 75%, hsla(60, 100%, 81%, 0.729) 100%), rgba(159, 255, 189, 0.46);
+  background: linear-gradient(0deg, hsl(0deg 0% 100%) 0%, hsl(300deg 100% 100%) 25%, hsl(300deg 100% 100%) 50%, hsl(135deg 100% 96%) 75%, #F3FAC8 100%);
   padding: 10px;
   height: 650px;
   width: 250px;
