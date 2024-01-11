@@ -177,6 +177,9 @@ img {
 
   .summonerName {
     font-size: 1.3em;
+    background-color: rgba(255, 255, 255, 0.74);
+    margin-top: 0;
+    margin-bottom: 15px;
   }
   .gameLength {
     grid-column: 2 / 4;
