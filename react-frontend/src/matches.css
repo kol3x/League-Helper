@@ -12,7 +12,8 @@
   padding: 20px;
   margin: 20px;
   border-radius: 25px;
-  background-color: rgba(255, 255, 255, 0.74);
+  background-color: rgba(255, 255, 255, 0.971);
+  border: 1px solid rgba(0, 0, 0, 0.296);
 }
 
 h1,
@@ -30,9 +31,11 @@ h3 {
   width: 250px;
   border-radius: 25px;
   height: 650px;
+  border: 2px solid rgba(0, 0, 0, 0.296);
 }
 
 .enemys {
+  border: 2px solid rgba(0, 0, 0, 0.296);
   grid-column: 4;
   display: grid;
   flex-direction: column;
