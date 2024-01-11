@@ -29,7 +29,7 @@ function Matches({ summonerName, setSummonerName, region, setError, error }) {
     };
 
     fetchData();
-  }, [summonerName]);
+  }, [summonerName, region]);
 
   return (
     <>
