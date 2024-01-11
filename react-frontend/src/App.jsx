@@ -13,7 +13,7 @@ function App() {
     <>
       <Search summonerName={summonerName} setSummonerName={setSummonerName} region={region} setRegion={setRegion}/>
       {error ? <Error /> : ""}
-      <Warning />
+      {/* <Warning /> */}
       <Matches summonerName={summonerName} setSummonerName={setSummonerName} region={region} setError={setError} error={error}/>
     </>
   );
