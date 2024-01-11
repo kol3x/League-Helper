@@ -45,12 +45,11 @@ exports.user_matches = asyncHandler(async (req, res, next) => {
           const matchlist = (
             await api.MatchV5.list(
               summoner.puuid,
-              Constants.RegionGroups[group],
-              { queue: 420 }
+              Constants.RegionGroups[group]
             )
           ).response.slice(0, 10);
           const dataAPI = JSON.stringify(
-            await match_history(matchlist, summoner.puuid, api)
+            await match_history(matchlist, summoner.puuid, api, group)
           );
           redisClient.setEx(
             `:user_${summonerName}:server_${region}`,

@@ -1,9 +1,9 @@
 const { Constants } = require("twisted");
 
-exports.match_history = async function (matches, userId, api) {
+exports.match_history = async function (matches, userId, api, region) {
   const matchPromises = matches.map(async (matchId) => {
     const match = (
-      await api.MatchV5.get(matchId, Constants.RegionGroups.EUROPE)
+      await api.MatchV5.get(matchId, region)
     ).response;
     return match;
   });
