@@ -21,7 +21,11 @@ function SingleMatch({ match, setSummonerName }) {
       <div className="mainChamp" style={styles}>
         <img
           className="mainChampPic"
-          src={`https://ddragon.leagueoflegends.com/cdn/13.9.1/img/champion/${match.info.championName}.png`}
+          src={`https://opgg-static.akamaized.net/meta/images/lol/champion/${
+            match.info.championName == "FiddleSticks"
+              ? "Fiddlesticks"
+              : match.info.championName
+          }.png`}
           alt={match.info.championName}
         ></img>
         <h1>{match.info.championName}</h1>
