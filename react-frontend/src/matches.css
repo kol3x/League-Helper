@@ -169,6 +169,7 @@ img {
   .funFacts {
     grid-column: 1 / -1;
     grid-row: 3 / 4;
+    gap: 10px;
   }
   .funFacts > li {
     font-size: 0.8em;
