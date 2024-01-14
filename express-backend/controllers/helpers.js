@@ -1,14 +1,11 @@
 const { Constants } = require("twisted");
 
 exports.match_history = async function (matches, userId, api, region) {
-  console.log("history start");
   const matchPromises = matches.map(async (matchId) => {
     try {
       const match = await api.MatchV5.get(matchId, region);
-      console.log("Fetched match:", matchId);
       return match.response;
     } catch (error) {
-      console.error("Error fetching match:", matchId, error.message);
       throw error;
     }
   });
