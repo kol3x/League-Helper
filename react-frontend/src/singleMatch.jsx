@@ -1,4 +1,4 @@
-function SingleMatch({ match, setSummonerName }) {
+function SingleMatch({ match, setSummonerName, setTagLine }) {
   let styles;
   const gradientWin =
     "linear-gradient(0deg, hsl(0deg 0% 100%) 0%, hsl(300deg 100% 100%) 25%, hsl(300deg 100% 100%) 50%, hsl(135deg 100% 96%) 75%, hsl(139deg 100% 81%) 100%), rgba(159, 255, 189, 0.46)";
@@ -47,9 +47,10 @@ function SingleMatch({ match, setSummonerName }) {
               <div
                 className="teammateName"
                 onClick={() => {
-                  setSummonerName(teammate.teammateInfo.summonerName);
+                  setSummonerName(teammate.teammateInfo.riotIdGameName);
+                  setTagLine(teammate.teammateInfo.riotIdTagline);
                 }}
-              >{`${teammate.teammateInfo.summonerName}`}</div>
+              >{`${teammate.teammateInfo.riotIdGameName} #${teammate.teammateInfo.riotIdTagline}`}</div>
             </div>
           ))}
         </div>
@@ -71,9 +72,10 @@ function SingleMatch({ match, setSummonerName }) {
             <div
               className="enemyName"
               onClick={() => {
-                setSummonerName(enemy.enemyInfo.summonerName);
+                setSummonerName(enemy.enemyInfo.riotIdGameName);
+                setTagLine(enemy.enemyInfo.riotIdTagline);
               }}
-            >{`${enemy.enemyInfo.summonerName}`}</div>
+            >{`${enemy.enemyInfo.riotIdGameName} #${enemy.enemyInfo.riotIdTagline}`}</div>
           </div>
         ))}
       </div>

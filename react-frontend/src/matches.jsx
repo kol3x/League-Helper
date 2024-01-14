@@ -5,7 +5,7 @@ import Loading from "./Loading";
 
 const SERVER_URL = process.env.SERVER_URL;
 
-function Matches({ summonerName, setSummonerName, region, setError, error, tagLine}) {
+function Matches({ summonerName, setSummonerName, region, setError, error, tagLine, setTagLine}) {
   const [matches, setMatches] = useState(undefined);
 
   useEffect(() => {
@@ -33,12 +33,12 @@ function Matches({ summonerName, setSummonerName, region, setError, error, tagLi
 
   return (
     <>
-      <h1 className="summonerName">Ranked games stats of {summonerName}</h1>
+      <h1 className="summonerName">Ranked games stats of {summonerName} #{tagLine}</h1>
       <div className="matchesContainer">
         {!matches && !error && <Loading />}
         {matches &&
           matches.map((match) => (
-            <SingleMatch match={match} setSummonerName={setSummonerName} />
+            <SingleMatch match={match} setSummonerName={setSummonerName} setTagLine={setTagLine}/>
           ))}
       </div>
     </>

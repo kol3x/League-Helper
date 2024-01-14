@@ -12,10 +12,8 @@ exports.match_history = async function (matches, userId, api, region) {
       throw error;
     }
   });
-  console.log("api poel");
   try {
     const matchResults = await Promise.all(matchPromises);
-    console.log("api doel");
     let result = [];
     for (let match of matchResults) {
       try {

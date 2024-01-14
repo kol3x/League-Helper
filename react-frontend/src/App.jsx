@@ -12,10 +12,23 @@ function App() {
   const [error, setError] = useState(false);
   return (
     <>
-      <Search setSummonerName={setSummonerName} region={region} setRegion={setRegion} setTagLine={setTagLine}/>
+      <Search
+        setSummonerName={setSummonerName}
+        region={region}
+        setRegion={setRegion}
+        setTagLine={setTagLine}
+      />
       {error ? <Error /> : ""}
       {/* <Warning /> */}
-      <Matches summonerName={summonerName} setSummonerName={setSummonerName} region={region} setError={setError} error={error} tagLine={tagLine}/>
+      <Matches
+        summonerName={summonerName}
+        setSummonerName={setSummonerName}
+        region={region}
+        setError={setError}
+        error={error}
+        tagLine={tagLine}
+        setTagLine={setTagLine}
+      />
     </>
   );
 }

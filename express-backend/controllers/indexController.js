@@ -40,7 +40,6 @@ exports.user_matches = asyncHandler(async (req, res, next) => {
   const region = req.params.server;
   let tagLine = req.params.tagline;
   if (!tagLine || tagLine === "unset") tagLine = Constants.Regions[region];
-  console.log(summonerName, region, tagLine);
   redisClient.get(
     `:user_${summonerName}:server_${region}:tagLine_${tagLine}`,
     async (error, data) => {
@@ -52,13 +51,10 @@ exports.user_matches = asyncHandler(async (req, res, next) => {
           const accountId = (
             await riotApi.Account.getByRiotId(summonerName, tagLine, group)
           ).response;
-          console.log(accountId);
           const matchlist = (await api.MatchV5.list(accountId.puuid, group)).response.slice(0, 10);
-          console.log(matchlist, "!!! ");
           const dataAPI = JSON.stringify(
             await match_history(matchlist, accountId.puuid, api, group)
           );
-          console.log("dataAPI");
           redisClient.setEx(
             `:user_${summonerName}:server_${region}:tagLine_${tagLine}`,
             EXPIRATION,
