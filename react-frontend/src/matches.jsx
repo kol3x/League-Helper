@@ -5,12 +5,12 @@ import Loading from "./Loading";
 
 const SERVER_URL = process.env.SERVER_URL;
 
-function Matches({ summonerName, setSummonerName, region, setError, error }) {
+function Matches({ summonerName, setSummonerName, region, setError, error, tagLine}) {
   const [matches, setMatches] = useState(undefined);
 
   useEffect(() => {
     setMatches(undefined);
-    const url = `${SERVER_URL}/${summonerName}/${region}/matches`;
+    const url = `${SERVER_URL}/${summonerName}/${region}/${tagLine ? tagLine : "unset"}`;
     const fetchData = async () => {
       try {
         const response = await fetch(url);
@@ -29,7 +29,7 @@ function Matches({ summonerName, setSummonerName, region, setError, error }) {
     };
 
     fetchData();
-  }, [summonerName, region]);
+  }, [summonerName, region, tagLine]);
 
   return (
     <>

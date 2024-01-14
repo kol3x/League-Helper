@@ -1,8 +1,9 @@
 import { useState } from "react";
 import "./search.css";
 
-function Search({ summonerName, setSummonerName, region, setRegion }) {
+function Search({ setSummonerName, region, setRegion, setTagLine }) {
   const [summonerInput, setSummonerInput] = useState("");
+  const [tagLineInput, setTagLineInput] = useState("");
   const regions = [
     "BRAZIL",
     "EU_EAST",
@@ -23,6 +24,7 @@ function Search({ summonerName, setSummonerName, region, setRegion }) {
           e.preventDefault();
           setSummonerName(e.target.summonerNameInput.value);
           setSummonerInput("");
+          setTagLine(tagLineInput);
           setRegion(e.target.serverSelect.value);
         }}
       >
@@ -31,18 +33,31 @@ function Search({ summonerName, setSummonerName, region, setRegion }) {
           <input
             type="text"
             name="summonerNameInput"
-            placeholder={summonerName}
+            placeholder="Summoner name"
             value={summonerInput}
             onChange={(e) => {
               setSummonerInput(e.target.value);
             }}
           ></input>
         </label>
+        <label htmlFor="tagLineInput">
+          Tagline:
+          <input
+            type="text"
+            name="tagLineInput"
+            placeholder="#SMTH"
+            value={tagLineInput}
+            onChange={(e) => {
+              setTagLineInput(e.target.value);
+            }}
+          ></input>
+        </label>
+
         <label htmlFor="serverSelect">
           Server:
-          <select name="serverSelect">
+          <select name="serverSelect" defaultValue={region}>
             {regions.map((reg) => (
-              <option key={reg} value={reg} selected={reg === region}>
+              <option key={reg} value={reg}>
                 {reg}
               </option>
             ))}
