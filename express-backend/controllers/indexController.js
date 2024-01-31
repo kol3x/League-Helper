@@ -1,22 +1,18 @@
 const asyncHandler = require("express-async-handler");
-const { LolApi, RiotApi, Constants, regionToRegionGroup } = require("twisted");
+const { LolApi, RiotApi, Constants } = require("twisted");
 const { RIOT, REDIS_URL } = require("../config/index");
 const { match_history } = require("./helpers");
 const Redis = require("redis");
-const { query } = require("express");
 
 const redisClient = Redis.createClient({
   url: REDIS_URL,
   legacyMode: true,
   pingInterval: 1000,
 });
-try {
-  (async () => {
-    await redisClient.connect();
-  })();
-} catch {
-  console.error("Redis failed );");
-}
+
+(async () => {
+  await redisClient.connect();
+})();
 
 const EXPIRATION = 1200;
 
@@ -52,7 +48,9 @@ exports.user_matches = asyncHandler(async (req, res, next) => {
           const accountId = (
             await riotApi.Account.getByRiotId(summonerName, tagLine, group)
           ).response;
-          const matchlist = (await api.MatchV5.list(accountId.puuid, group, { queue: 420})).response.slice(0, 10);
+          const matchlist = (
+            await api.MatchV5.list(accountId.puuid, group, { queue: 420 })
+          ).response.slice(0, 10);
           const dataAPI = JSON.stringify(
             await match_history(matchlist, accountId.puuid, api, group)
           );
