@@ -2,9 +2,9 @@ const asyncHandler = require("express-async-handler");
 const { LolApi, RiotApi, Constants } = require("twisted");
 const { RIOT, REDIS_URL } = require("../config/index");
 const { match_history } = require("./helpers");
-const Redis = require("redis");
+const { createClient } = require("redis");
 
-const redisClient = Redis.createClient({
+const redisClient = createClient({
   url: REDIS_URL,
   legacyMode: true,
 });
@@ -13,7 +13,7 @@ const redisClient = Redis.createClient({
   await redisClient.connect();
 })();
 
-redisClient.on('error', err => console.log('Redis Client Error', err));
+redisClient.on("error", (err) => console.log("Redis Client Error", err));
 
 const EXPIRATION = 1200;
 
