@@ -4,24 +4,16 @@ const { RIOT, REDIS_URL } = require("../config/index");
 const { match_history } = require("./helpers");
 const Redis = require("redis");
 
-let redisClient;
+const redisClient = Redis.createClient({
+  url: REDIS_URL,
+  legacyMode: true,
+});
 
-try {
-  redisClient = Redis.createClient({
-    url: REDIS_URL,
-    legacyMode: true,
-  });
+(async () => {
+  await redisClient.connect();
+})();
 
-  (async () => {
-    await redisClient.connect();
-  })();
-} catch (err) {
-  redisClient = {
-    get: function () {
-      return null;
-    },
-  };
-}
+redisClient.on('error', err => console.log('Redis Client Error', err));
 
 const EXPIRATION = 1200;
 
