@@ -6,8 +6,8 @@ const Redis = require("redis");
 
 const redisClient = Redis.createClient({
   url: REDIS_URL,
-  legacyMode: true,
-  pingInterval: 1000,
+  // legacyMode: true,`
+  // pingInterval: 1000,
 });
 
 (async () => {
