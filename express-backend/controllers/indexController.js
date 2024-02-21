@@ -7,9 +7,9 @@ const Redis = require("redis");
 let redisClient;
 
 try {
-  const redisClient = Redis.createClient({
+  redisClient = Redis.createClient({
     url: REDIS_URL,
-    // legacyMode: true,
+    legacyMode: true,
   });
 
   (async () => {
