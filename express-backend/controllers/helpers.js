@@ -1,5 +1,3 @@
-const { Constants } = require("twisted");
-
 exports.match_history = async function (matches, userId, api, region) {
   const matchPromises = matches.map(async (matchId) => {
     try {
@@ -14,22 +12,19 @@ exports.match_history = async function (matches, userId, api, region) {
     let result = [];
     for (let match of matchResults) {
       try {
-        let userIndex = -1;
-        for (let i = 0; i < 10; i++) {
-          if (match.metadata.participants[i] == userId) {
-            userIndex = i;
-            break;
-          }
-        }
-        let userInfo = match.info.participants[userIndex];
+        const userIndex = match.metadata.participants.findIndex(
+          (id) => id === userId
+        );
+        const userInfo = match.info.participants[userIndex];
 
         const gameResult = userInfo.win ? "WIN" : "LOSE";
 
         let ourTeam = [];
         let enemyTeam = [];
         for (let i = 0; i < 10; i++) {
+          // based on every player win state, determine who belongs to which team
           let playerInfo = match.info.participants[i];
-          if (match.metadata.participants[i] === userId) continue;
+          if (playerInfo === userInfo) continue; // skip the user
           if (playerInfo.win === userInfo.win) {
             ourTeam.push({ teammateInfo: playerInfo });
           } else {
@@ -44,6 +39,8 @@ exports.match_history = async function (matches, userId, api, region) {
           mostDamageTaken: ach_damageTaken(userInfo, ourTeam),
           mostDamageDealt: ach_damageDealt(userInfo, ourTeam),
         };
+
+        // Determine game length if available.
         let gameLength = 0;
         try {
           gameLength = Math.round(userInfo.challenges.gameLength / 60);
