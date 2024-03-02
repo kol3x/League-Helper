@@ -1,68 +1,21 @@
 exports.match_history = async function (matches, userId, api, region) {
+  // fetch every match in parallel
   const matchPromises = matches.map(async (matchId) => {
     try {
       const match = await api.MatchV5.get(matchId, region);
       return match.response;
     } catch (error) {
+      console.error("Error fetching matches:", error.message);
       throw error;
     }
   });
   try {
     const matchResults = await Promise.all(matchPromises);
-    let result = [];
+    const matches = [];
     for (let match of matchResults) {
-      try {
-        const userIndex = match.metadata.participants.findIndex(
-          (id) => id === userId
-        );
-        const userInfo = match.info.participants[userIndex];
-
-        const gameResult = userInfo.win ? "WIN" : "LOSE";
-
-        let ourTeam = [];
-        let enemyTeam = [];
-        for (let i = 0; i < 10; i++) {
-          // based on every player win state, determine who belongs to which team
-          let playerInfo = match.info.participants[i];
-          if (playerInfo === userInfo) continue; // skip the user
-          if (playerInfo.win === userInfo.win) {
-            ourTeam.push({ teammateInfo: playerInfo });
-          } else {
-            enemyTeam.push({ enemyInfo: playerInfo });
-          }
-        }
-
-        let surrender =
-          userInfo.gameEndedInEarlySurrender || userInfo.gameEndedInSurrender;
-
-        let achievementsList = {
-          mostDamageTaken: ach_damageTaken(userInfo, ourTeam),
-          mostDamageDealt: ach_damageDealt(userInfo, ourTeam),
-        };
-
-        // Determine game length if available.
-        let gameLength = 0;
-        try {
-          gameLength = Math.round(userInfo.challenges.gameLength / 60);
-        } catch {
-          console.error("Error calculating game length:");
-        }
-
-        result.push({
-          gameResult: gameResult,
-          info: userInfo,
-          teammateList: ourTeam,
-          enemyList: enemyTeam,
-          achievements: achievementsList,
-          surrender: surrender,
-          gameLength: gameLength,
-        });
-      } catch (error) {
-        console.error("Error processing match:", error.message);
-      }
+      matches.push(eachMatchInfo(match, userId));
     }
-
-    return result;
+    return matches;
   } catch (error) {
     console.error("Error fetching match details:", error.message);
     throw error;
@@ -70,7 +23,7 @@ exports.match_history = async function (matches, userId, api, region) {
 };
 
 function ach_damageTaken(userInfo, ourTeam) {
-  let damageTakenList = [];
+  const damageTakenList = [];
   try {
     for (let teammate of ourTeam) {
       damageTakenList.push(
@@ -88,7 +41,7 @@ function ach_damageTaken(userInfo, ourTeam) {
 }
 
 function ach_damageDealt(userInfo, ourTeam) {
-  let damageDealtList = [];
+  const damageDealtList = [];
   try {
     for (let teammate of ourTeam) {
       damageDealtList.push(
@@ -102,4 +55,60 @@ function ach_damageDealt(userInfo, ourTeam) {
     console.error("Error calculating damage dealt achievement:", error.message);
     return false;
   }
+}
+
+function eachMatchInfo(match, userId) {
+  try {
+    const userIndex = match.metadata.participants.findIndex(
+      (id) => id === userId
+    );
+    const userInfo = match.info.participants[userIndex];
+
+    const gameResult = userInfo.win ? "WIN" : "LOSE";
+
+    const [ourTeam, enemyTeam] = populateTeams(match, userInfo);
+
+    const surrender =
+      userInfo.gameEndedInEarlySurrender || userInfo.gameEndedInSurrender;
+
+    const achievementsList = {
+      mostDamageTaken: ach_damageTaken(userInfo, ourTeam),
+      mostDamageDealt: ach_damageDealt(userInfo, ourTeam),
+    };
+
+    let gameLength = 0;
+    try {
+      gameLength = Math.round(userInfo.challenges.gameLength / 60);
+    } catch {
+      console.error("Error calculating game length:");
+    }
+    return {
+      gameResult: gameResult,
+      info: userInfo,
+      teammateList: ourTeam,
+      enemyList: enemyTeam,
+      achievements: achievementsList,
+      surrender: surrender,
+      gameLength: gameLength,
+    };
+  } catch (error) {
+    console.error("Error processing match:", error.message);
+  }
+}
+
+function populateTeams(match, userInfo) {
+  const ourTeam = [];
+  const enemyTeam = [];
+  for (let i = 0; i < 10; i++) {
+    // based on every player win state, determine who belongs to which team
+    const playerInfo = match.info.participants[i];
+    if (playerInfo === userInfo) continue; // skip the user
+
+    if (playerInfo.win === userInfo.win) {
+      ourTeam.push({ teammateInfo: playerInfo });
+    } else {
+      enemyTeam.push({ enemyInfo: playerInfo });
+    }
+  }
+  return [ourTeam, enemyTeam];
 }
