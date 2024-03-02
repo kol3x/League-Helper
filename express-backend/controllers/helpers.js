@@ -12,9 +12,10 @@ exports.match_history = async function (matches, userId, api, region) {
   try {
     const matchResults = await Promise.all(matchPromises);
     const matches = [];
-    for (let match of matchResults) {
-      matches.push(eachMatchInfo(match, userId));
-    }
+    matchResults.map((match) =>
+      matches.push(processSingleMatch(match, userId))
+    );
+
     return matches;
   } catch (error) {
     console.error("Error fetching match details:", error.message);
@@ -25,11 +26,11 @@ exports.match_history = async function (matches, userId, api, region) {
 function ach_damageTaken(userInfo, ourTeam) {
   const damageTakenList = [];
   try {
-    for (let teammate of ourTeam) {
+    ourTeam.map((teammate) =>
       damageTakenList.push(
         teammate.teammateInfo.challenges.damageTakenOnTeamPercentage
-      );
-    }
+      )
+    );
     return (
       userInfo.challenges.damageTakenOnTeamPercentage >
       Math.max(...damageTakenList)
@@ -43,11 +44,11 @@ function ach_damageTaken(userInfo, ourTeam) {
 function ach_damageDealt(userInfo, ourTeam) {
   const damageDealtList = [];
   try {
-    for (let teammate of ourTeam) {
+    ourTeam.map((teammate) =>
       damageDealtList.push(
         teammate.teammateInfo.challenges.teamDamagePercentage
-      );
-    }
+      )
+    );
     return (
       userInfo.challenges.teamDamagePercentage > Math.max(...damageDealtList)
     );
@@ -57,7 +58,7 @@ function ach_damageDealt(userInfo, ourTeam) {
   }
 }
 
-function eachMatchInfo(match, userId) {
+function processSingleMatch(match, userId) {
   try {
     const userIndex = match.metadata.participants.findIndex(
       (id) => id === userId
@@ -99,16 +100,13 @@ function eachMatchInfo(match, userId) {
 function populateTeams(match, userInfo) {
   const ourTeam = [];
   const enemyTeam = [];
-  for (let i = 0; i < 10; i++) {
-    // based on every player win state, determine who belongs to which team
-    const playerInfo = match.info.participants[i];
-    if (playerInfo === userInfo) continue; // skip the user
-
-    if (playerInfo.win === userInfo.win) {
-      ourTeam.push({ teammateInfo: playerInfo });
+  match.info.participants.map((player) => {
+    if (player === userInfo) return;
+    if (player.win === userInfo.win) {
+      ourTeam.push({ teammateInfo: player });
     } else {
-      enemyTeam.push({ enemyInfo: playerInfo });
+      enemyTeam.push({ enemyInfo: player });
     }
-  }
+  });
   return [ourTeam, enemyTeam];
 }
