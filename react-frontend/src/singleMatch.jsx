@@ -17,21 +17,23 @@ function SingleMatch({ match, setSummonerName, setTagLine }) {
   }
 
   return (
-    <div key={match.info.gameId} className="singleMatch">
-      <div className="mainChamp" style={styles}>
-        <img
-          className="mainChampPic"
-          src={`https://opgg-static.akamaized.net/meta/images/lol/champion/${
-            match.info.championName == "FiddleSticks"
-              ? "Fiddlesticks"
-              : match.info.championName
-          }.png`}
-          alt={match.info.championName}
-        ></img>
-        <h1>{match.info.championName}</h1>
-        <h3 className="mainChampKda">
-          {`K: ${match.info.kills} D: ${match.info.deaths} A: ${match.info.assists}`}
-        </h3>
+    <div style={styles} key={match.info.gameId} className="singleMatch">
+      <div className="mainChamp" >
+        <div className="summonerContainer">
+          <img
+            className="mainChampPic"
+            src={`https://opgg-static.akamaized.net/meta/images/lol/champion/${
+              match.info.championName == "FiddleSticks"
+                ? "Fiddlesticks"
+                : match.info.championName
+            }.png`}
+            alt={match.info.championName}
+          ></img>
+          <h3 className="mainChampKda">
+            {`K: ${match.info.kills} D: ${match.info.deaths} A: ${match.info.assists}`}
+          </h3>
+        </div>
+
         <div className="teammates">
           {match.teammateList.map((teammate) => (
             <div key={teammate.puuid} className="singleTeammate">
@@ -57,27 +59,28 @@ function SingleMatch({ match, setSummonerName, setTagLine }) {
       </div>
       <h2 className="gameLength">{`${match.gameLength} minutes`}</h2>
       <div className="enemys">
-        <h1>Enemy Team</h1>
-        {match.enemyList.map((enemy) => (
-          <div key={enemy.puuid} className="singleEnemy">
-            <img
-              className="champPic"
-              src={`https://opgg-static.akamaized.net/meta/images/lol/champion/${
-                enemy.enemyInfo.championName == "FiddleSticks"
-                  ? "Fiddlesticks"
-                  : enemy.enemyInfo.championName
-              }.png`}
-              alt={enemy.enemyInfo.championName}
-            ></img>
-            <div
-              className="enemyName"
-              onClick={() => {
-                setSummonerName(enemy.enemyInfo.riotIdGameName);
-                setTagLine(enemy.enemyInfo.riotIdTagline);
-              }}
-            >{`${enemy.enemyInfo.riotIdGameName} #${enemy.enemyInfo.riotIdTagline}`}</div>
-          </div>
-        ))}
+        <div className="enemysContainer">
+          {match.enemyList.map((enemy) => (
+            <div key={enemy.puuid} className="singleEnemy">
+              <img
+                className="champPic"
+                src={`https://opgg-static.akamaized.net/meta/images/lol/champion/${
+                  enemy.enemyInfo.championName == "FiddleSticks"
+                    ? "Fiddlesticks"
+                    : enemy.enemyInfo.championName
+                }.png`}
+                alt={enemy.enemyInfo.championName}
+              ></img>
+              <div
+                className="enemyName"
+                onClick={() => {
+                  setSummonerName(enemy.enemyInfo.riotIdGameName);
+                  setTagLine(enemy.enemyInfo.riotIdTagline);
+                }}
+              >{`${enemy.enemyInfo.riotIdGameName} #${enemy.enemyInfo.riotIdTagline}`}</div>
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="funFacts">

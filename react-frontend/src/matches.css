@@ -6,12 +6,13 @@
 }
 
 .singleMatch {
+  border-radius: 25px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 10px;
+  grid-template-columns: 1fr 1fr;
   list-style-type: none;
   padding: 20px;
   margin: 20px;
-  border-radius: 25px;
   background-color: rgba(255, 255, 255, 0.971);
   border: 1px solid rgba(0, 0, 0, 0.296);
 }
@@ -23,91 +24,84 @@ h3 {
 }
 
 .mainChamp {
-  place-self: start;
+  border-top-left-radius: 15px;
+  grid-row: 1;
+  grid-column: 1;
   padding: 10px;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 5px;
-  width: 250px;
-  border-radius: 25px;
-  height: 650px;
   border: 2px solid rgba(0, 0, 0, 0.296);
 }
 
 .enemys {
+  border-top-right-radius: 15px;
+
   border: 2px solid rgba(0, 0, 0, 0.296);
-  grid-column: 4;
-  display: grid;
+  grid-column: 2;
+  grid-template-rows: 1fr 1fr;
+  display: flex;
   flex-direction: column;
-  align-self: start;
-  justify-self: end;
-  background: linear-gradient(0deg, hsl(0deg 0% 100%) 0%, hsl(300deg 100% 100%) 25%, hsl(300deg 100% 100%) 50%, hsl(135deg 100% 96%) 75%, #F3FAC8 100%);
   padding: 10px;
-  height: 650px;
-  width: 250px;
-  border-radius: 25px;
 }
 
-.mainChampPic {
-  width: 150px;
-  align-self: center;
+.summonerContainer {
+  position: relative;
 }
 
-.mainChamp > .mainChampKda {
-  letter-spacing: 2px;
+.mainChampKda {
+  position: absolute;
   font-style: italic;
+  bottom: 0px;
+  background-color: rgba(255, 255, 255, 0.854);
+  width: 100%;
 }
 
 .gameLength {
-  grid-column: 2 / 4;
-  grid-row: 2;
-  align-self: start;
+  grid-column: 1 / 4;
+  grid-row: 3;
 }
 
 .teammates {
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
-  grid-row: 4;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.enemysContainer {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
 }
 
 .singleTeammate,
 .singleEnemy {
-  display: grid;
-  grid-template-columns: 90px 1fr;
   font-weight: 800;
   color: rgb(76, 76, 253);
 }
 
-.singleTeammate:not(:last-child),
-.singleEnemy:not(:last-child) {
-  border-bottom: 2px solid rgba(0, 0, 0, 0.296);
-}
-
 .teammateName,
 .enemyName {
-  align-self: center;
+  font-size: smaller;
   cursor: pointer;
+  color: black;
 }
 
 .champPic {
   width: 70px;
-  padding: 10px;
-  
+  padding: 0px 10px;
 }
 
 .funFacts {
-  grid-column: 2 / 4;
+  grid-column: 1 / -1;
   font-size: 22px;
-  grid-row: 1;
+  grid-row: 2;
   display: grid;
   padding: 20px;
-  border-radius: 25px;
-  
+  gap: 5px;
 }
 
 .funFacts > li {
-  padding: 20px;
-  place-self: center;
+  padding: 5px;
+  border: 1px solid white;
 }
 
 .funFacts > .red {
@@ -121,10 +115,6 @@ h3 {
 
 .funFacts > .yellow {
   background-color: rgb(171, 171, 171);
-}
-
-img {
-  border-radius: 50%;
 }
 
 .summonerName {
@@ -141,65 +131,7 @@ img {
 }
 
 @media only screen and (max-width: 767px) {
-  h1 {
-    font-size: 1.2em;
-  }
-  .singleMatch {
-    padding: 15px;
-    margin: 5px;
-    border-radius: 5px;
-  }
-  .mainChampPic {
-    width: 100px;
-  }
-  .mainChamp {
-    border-radius: 5px;
-    width: 95%;
-    grid-column: 1/3;
-    padding: 0;
-    padding-top: 5px;
-    height: 460px;
-  }
-  .enemys {
-    border-radius: 5px;
-    grid-column: 3 / 5;
-    width: 95%;
-    padding: 0;
-    height: 465px;
-  }
-  .funFacts {
-    grid-column: 1 / -1;
-    grid-row: 3 / 4;
-    gap: 10px;
-  }
-  .funFacts > li {
-    font-size: 0.8em;
-    padding: 10px;
-    border-radius: 25px;
-  }
-
-  .summonerName {
-    font-size: 1.3em;
-    background-color: rgba(255, 255, 255, 0.74);
-    margin-top: 0;
-    margin-bottom: 15px;
-  }
-  .gameLength {
-    grid-column: 2 / 4;
-    grid-row: 1;
-    padding-bottom: 10px;
-    align-self: start;
-  }
-  .singleTeammate,
-  .singleEnemy {
-    font-size: 0.8em;
-    grid-template-columns: 1fr 1fr;
-    display: flex;
-    flex-direction: column;
-  }
-  .champPic {
-    width: 40px;
-    padding: 5px;
-    align-self: center;
+  .test {
+    display: unset;
   }
 }
