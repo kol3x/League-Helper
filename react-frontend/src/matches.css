@@ -45,16 +45,8 @@ h3 {
   padding: 10px;
 }
 
-.summonerContainer {
-  position: relative;
-}
-
 .mainChampKda {
-  position: absolute;
   font-style: italic;
-  bottom: 0px;
-  background-color: rgba(255, 255, 255, 0.854);
-  width: 100%;
 }
 
 .gameLength {
@@ -87,6 +79,7 @@ h3 {
 
 .champPic {
   width: 70px;
+  height: auto;
   padding: 0px 10px;
 }
 
@@ -123,15 +116,62 @@ h3 {
   font-style: oblique;
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 1200px) {
   .matchesContainer {
     margin: 0;
     padding: 0;
   }
+  .mainChampPic {
+    width: 100px;
+  }
+  .champPic {
+    width: 60px;
+  }
+  .mainChampKda {
+    font-size: medium;
+  }
 }
 
-@media only screen and (max-width: 767px) {
-  .test {
-    display: unset;
+@media only screen and (max-width: 1050px) {
+  .matchesContainer {
+    margin: 0;
+    padding: 0;
+  }
+  .mainChampPic {
+    width: 80px;
+  }
+  .champPic {
+    width: 50px;
+  }
+  .enemyName,
+  .teammateName {
+    font-size: 10px;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .mainChampKda {
+    font-size: smaller;
+  }
+  .mainChamp {
+    grid-row: 1;
+    grid-column: 1 / -1;
+  }
+  .enemys {
+    grid-column: 1 / -1;
+    grid-row: 3;
+  }
+  .gameLength {
+    grid-row: 4;
+  }
+  .mainChampPic {
+    width: 70px;
+  }
+  .champPic {
+    width: 50px;
+  }
+  .enemyName,
+  .teammateName {
+    font-size: 10px;
   }
 }
