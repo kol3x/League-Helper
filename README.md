@@ -1,15 +1,5 @@
-<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
 <a name="readme-top"></a>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
 
-<!-- PROJECT LOGO -->
-<br />
 <div align="center">
 
   <h3 align="center">League Helper</h3>
@@ -23,8 +13,6 @@
     <a href="https://github.com/kol3x/League-Helper/issues">Report Bug</a>
   </p>
 </div>
-
-
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -49,31 +37,26 @@
   </ol>
 </details>
 
-
-
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
 [![Product Name Screen Shot][product-screenshot]](https://moonlit-kleicha-cc0648.netlify.app)
 
 My passion project is developed using React and Redis. It utilizes Riot Games' API to retrieve the latest League of Legends matches for users and presents unique statistics not commonly found on popular LoL-stats websites. To reduce dependency on the API, I've implemented Redis to cache data during the initial lookup.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
+<p align="right"><a href="#readme-top">back to top</a></p>
 
 ### Built With
 
-* [![React][React.js]][React-url]
-* [![Redis][Redis.io]][Redis-url]
-* [![Express][Expressjs.com]][Express-url]
+- [![React][React.js]][React-url]
+- [![Redis][Redis.io]][Redis-url]
+- [![Express][Expressjs.com]][Express-url]
 
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
+<p align="right"><a href="#readme-top">back to top</a></p>
 
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
 ### Prerequisites
@@ -94,7 +77,7 @@ Node.js, npm
    ```
 5. Fill the react folder .env file with the following.
    ```js
-   SERVER_URL='http://localhost:5005'
+   SERVER_URL = "http://localhost:5005";
    ```
 6. Run the react frontend and copy the adress of frontend instance.
    ```sh
@@ -102,10 +85,10 @@ Node.js, npm
    ```
 7. Enter your API, Redis URL, frontend adress and pot in `.env` of express folder.
    ```js
-   RIOT = 'ENTER YOUR API';
-   REDIS_URL='you Redis instance'
-   PORT=5005
-   FRONTEND_URL='ENTER FRONTEND URL FROM PREV STEP'
+   RIOT = "ENTER YOUR API";
+   REDIS_URL = "you Redis instance";
+   PORT = 5005;
+   FRONTEND_URL = "ENTER FRONTEND URL FROM PREV STEP";
    ```
 8. Run the backend instance
    ```sh
@@ -114,19 +97,17 @@ Node.js, npm
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- USAGE EXAMPLES -->
+
 ## Usage
 
 By default it opens my League profile. To look at a different one, you should type a username, RIOT tag and select a server in the header.
 Another option is to click any on the teammates/enemys names to go and see their matches.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
+<p align="right"><a href="#readme-top">back to top</a></p>
 
 <!-- ROADMAP -->
+
 ## Roadmap
 
 - [ ] Redesign match box.
@@ -134,11 +115,10 @@ Another option is to click any on the teammates/enemys names to go and see their
 
 I'd be happy for you to join and build up this project with me.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
+<p align="right"><a href="#readme-top">back to top</a></p>
 
 <!-- CONTRIBUTING -->
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -152,13 +132,11 @@ Don't forget to give the project a star! Thanks again!
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
+<p align="right"><a href="#readme-top">back to top</a></p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/nikolai-shcherbinin/
 [product-screenshot]: https://zingy-griffin-616d20.netlify.app/assets/project-2-btNll4wK.png
