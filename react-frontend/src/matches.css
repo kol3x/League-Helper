@@ -165,13 +165,16 @@ h3 {
     grid-row: 4;
   }
   .mainChampPic {
-    width: 70px;
+    width: 50px;
   }
   .champPic {
-    width: 50px;
+    width: 30px;
+  }
+  .funFacts > li {
+    font-size: medium;
   }
   .enemyName,
   .teammateName {
-    font-size: 10px;
+    font-size: 8px;
   }
 }
