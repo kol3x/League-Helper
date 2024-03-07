@@ -139,7 +139,7 @@ Don't forget to give the project a star! Thanks again!
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/nikolai-shcherbinin/
-[product-screenshot]: https://zingy-griffin-616d20.netlify.app/assets/project-2-btNll4wK.png
+[product-screenshot]: https://zingy-griffin-616d20.netlify.app/assets/project-2-qjyXX4Fo.png
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
 [Redis.io]: https://img.shields.io/badge/redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white
