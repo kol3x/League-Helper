@@ -64,7 +64,7 @@ function SingleMatch({ match, setSummonerName, setTagLine }) {
             <div key={enemy.puuid} className="singleEnemy">
               <img
                 className="champPic"
-                src={`https://opgg-static.akamaized.net/meta/images/lol/champion/${
+                src={`https://opgg-static.akamaized.net/meta/images/lol/14.12.1/champion/${
                   enemy.enemyInfo.championName == "FiddleSticks"
                     ? "Fiddlesticks"
                     : enemy.enemyInfo.championName
