@@ -22,7 +22,7 @@ function SingleMatch({ match, setSummonerName, setTagLine }) {
         <div className="summonerContainer">
           <img
             className="mainChampPic"
-            src={`https://opgg-static.akamaized.net/meta/images/lol/champion/${
+            src={`https://opgg-static.akamaized.net/meta/images/lol/14.12.1/champion/${
               match.info.championName == "FiddleSticks"
                 ? "Fiddlesticks"
                 : match.info.championName
@@ -39,7 +39,7 @@ function SingleMatch({ match, setSummonerName, setTagLine }) {
             <div key={teammate.puuid} className="singleTeammate">
               <img
                 className="champPic"
-                src={`https://opgg-static.akamaized.net/meta/images/lol/champion/${
+                src={`https://opgg-static.akamaized.net/meta/images/lol/14.12.1/champion/${
                   teammate.teammateInfo.championName === "FiddleSticks"
                     ? "Fiddlesticks"
                     : teammate.teammateInfo.championName
